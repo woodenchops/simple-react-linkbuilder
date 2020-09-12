@@ -1,6 +1,5 @@
-import React, { Fragment, useContext} from 'react';
+import React, { Fragment } from 'react';
 import ParamInput from './ParamInput';
-import { MasterContext } from '../contexts/MasterContext';
 
 const OptionalFields = () => {
 
@@ -12,7 +11,7 @@ const OptionalFields = () => {
         <section className="params-container section-container">
 
             <div className="inner-param-container" id="paramContainer">
-                <ParamInput paramName={'ctyhocn'} checked={false} type={'text'} />
+                <ParamInput paramName={'ctyhocn'} checked={true} type={'text'} />
                 <ParamInput paramName={'spec_plan'} checked={false} type={'text'} />
             </div>
 

@@ -44,11 +44,9 @@ export class MasterProvider extends Component {
         },
         buildOptionalParamsObject: (e) => {
 
-            let optionalFields = this.state.optionalFields;
-
-            delete optionalFields[e.target.name]
-
             if(e.target.value.length <= 0) {
+                let optionalFields = this.state.optionalFields;
+                delete optionalFields[e.target.name]
                 this.setState({
                     optionalFields: {
                         ...optionalFields
@@ -77,7 +75,7 @@ export class MasterProvider extends Component {
                         ...optionalFields
                     }
                 }, this.state.formatQueryString)
-            } 
+            }
         },
         createStandardDeeplink: () => {
             this.setState({
