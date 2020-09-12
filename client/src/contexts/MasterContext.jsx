@@ -44,20 +44,38 @@ export class MasterProvider extends Component {
         },
         buildOptionalParamsObject: (e) => {
 
-            this.setState({
+            let optionalFields = this.state.optionalFields;
+
+            delete optionalFields[e.target.name]
+
+            if(e.target.value.length <= 0) {
+                this.setState({
+                    optionalFields: {
+                        ...optionalFields
+                    }
+                }, this.state.formatQueryString)
+
+            } else {
+                this.setState({
                 optionalFields: {
                     ...this.state.optionalFields,
                     [e.target.name]: e.target.value
                 }
-            }, this.state.formatQueryString);            
+            }, this.state.formatQueryString); 
+
+            }           
         },
         toggleOptionalParams: (e) => {
 
-            let optionalFields = Object.entries(this.state.optionalFields);
+            let optionalFields = this.state.optionalFields;
+
+            delete optionalFields[e.target.name]
 
             if(!e.target.checked) {
                 this.setState({
-                    optionalFields: optionalFields.filter(x => x.name === e.target.name )
+                    optionalFields: {
+                        ...optionalFields
+                    }
                 }, this.state.formatQueryString)
             } 
         },
