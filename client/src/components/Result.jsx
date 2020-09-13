@@ -14,7 +14,7 @@ const Result = () => {
         <section className="results-container section-container">
 
             <fieldset>
-                 <textarea id="result" placeholder={protocol} value={`${protocol}${environment}${locale}${brand}${book}${queryString}`}></textarea>
+                 <textarea id="result" placeholder={protocol} onChange={(e) => console.log(e)} value={`${protocol}${environment}${locale}${brand}${book}${queryString}`}></textarea>
             </fieldset>
 
             <section className="result-cta-section section-container">
