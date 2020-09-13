@@ -18,9 +18,13 @@ export class MasterProvider extends Component {
         book: '',
         queryString: '',
         optionalFields: {},
+        standardDeeplink: false,
+        OHWDeeplink: true,
         generateUrl: (e) => {
             this.setState({
                 [e.target.id]: e.target.value,
+                standardDeeplink: false,
+                OHWDeeplink: false
             });
         },
         formatQueryString: () => {
@@ -38,14 +42,14 @@ export class MasterProvider extends Component {
             }
 
             this.setState({
-                queryString: queryString
+                queryString
             });
 
         },
         buildOptionalParamsObject: (e) => {
 
             if(e.target.value.length <= 0) {
-                
+
                 let optionalFields = {...this.state.optionalFields};
 
                 delete optionalFields[e.target.name];
@@ -85,17 +89,34 @@ export class MasterProvider extends Component {
                 environment: 'www3.hilton.com/',
                 locale: 'en_US/',
                 brand: 'hi/',
-                book: 'reservation/book.htm'
-            })
+                book: 'reservation/book.htm',
+                standardDeeplink: true,
+                OHWDeeplink: false
+            }, this.state.formatQueryString)
         },
         createOHWDeeplink: () => {
             this.setState({
                 environment: 'www.hilton.com/',
                 locale: 'en_US/',
                 brand: '',
-                book: 'book/reservation/deeplink'
-            })
+                book: 'book/reservation/deeplink',
+                standardDeeplink: false,
+                OHWDeeplink: true
+            }, this.state.formatQueryString)
+        },
+        clearUrl: () => {
+            this.setState({
+                environment: '',
+                locale: '',
+                brand: '',
+                book: '',
+                queryString: ''
+            }, this.state.formatQueryString)
         }
+    }
+
+    componentDidMount() {
+         this.state.OHWDeeplink ? this.state.createOHWDeeplink() : this.state.standardDeeplink && this.state.createStandardDeeplink();
     }
 
     render() { 

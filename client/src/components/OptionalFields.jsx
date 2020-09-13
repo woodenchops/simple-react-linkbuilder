@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import ParamInput from './ParamInput';
+import paramsJson from '../assets/data/params.json';
 
 const OptionalFields = () => {
 
@@ -11,8 +12,9 @@ const OptionalFields = () => {
         <section className="params-container section-container">
 
             <div className="inner-param-container" id="paramContainer">
-                <ParamInput paramName={'ctyhocn'} checked={true} type={'text'} />
-                <ParamInput paramName={'spec_plan'} checked={false} type={'text'} />
+                {(paramsJson && paramsJson.length > 0 && paramsJson.map(param => (
+                    <ParamInput paramName={param.paramName || 'No name given'} checked={param.checked || false} type={param.type || 'text'} /> 
+                )))}
             </div>
 
         </section>

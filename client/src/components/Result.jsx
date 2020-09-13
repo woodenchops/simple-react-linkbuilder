@@ -4,7 +4,7 @@ import { MasterContext } from '../contexts/MasterContext';
 const Result = () => {
 
 
-    const {protocol, environment, locale, brand, book, queryString} = useContext(MasterContext);
+    const {protocol, environment, locale, brand, book, queryString, clearUrl} = useContext(MasterContext);
 
     useEffect(() => {
         
@@ -20,7 +20,7 @@ const Result = () => {
             <section className="result-cta-section section-container">
                     <button id="copyText" className="btn">Copy Link</button>
                     <button id="testLink" className="btn">Test Link</button>
-                    <button id="clearInput" className="btn">Clear</button>
+                    <button id="clearInput" className="btn" onClick={() => clearUrl()}>Clear</button>
             </section>
          
         </section>

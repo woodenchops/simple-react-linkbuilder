@@ -6,7 +6,7 @@
     },
     {
         "paramName": "spec_plan",
-        "checked": true,
+        "checked": false,
         "type": "text"
     }
 ]

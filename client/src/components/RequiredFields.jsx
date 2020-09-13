@@ -8,7 +8,7 @@ import { MasterContext } from '../contexts/MasterContext';
 
 const RequiredFields = () => {
 
-    const {createStandardDeeplink, createOHWDeeplink, environment, locale, brand, book} = useContext(MasterContext);
+    const {createStandardDeeplink, createOHWDeeplink, environment, locale, brand, book, standardDeeplink, OHWDeeplink} = useContext(MasterContext);
 
     useEffect(() => {
 
@@ -21,9 +21,9 @@ const RequiredFields = () => {
             <section className="button-container section-container">
 
 
-                <button onClick={createOHWDeeplink} id="ohw-generator" className="btn link-generator btn--first">Create OHW Link</button>
+                <button onClick={createOHWDeeplink} id="ohw-generator" className={`btn ${(OHWDeeplink ? 'active' : '')} link-generator btn--first`}>Create OHW Link</button>
 
-                <button onClick={createStandardDeeplink} id="standard-generator" className="btn link-generator">Create Standard Deep Link</button>
+                <button onClick={createStandardDeeplink} id="standard-generator" className={`btn ${(standardDeeplink ? 'active' : '')}  link-generator`}>Create Standard Deep Link</button>
 
             </section>
 
