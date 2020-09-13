@@ -45,8 +45,10 @@ export class MasterProvider extends Component {
         buildOptionalParamsObject: (e) => {
 
             if(e.target.value.length <= 0) {
-                let optionalFields = this.state.optionalFields;
-                delete optionalFields[e.target.name]
+                let optionalFields = {...this.state.optionalFields};
+
+                delete optionalFields[e.target.name];
+                
                 this.setState({
                     optionalFields: {
                         ...optionalFields
@@ -65,10 +67,10 @@ export class MasterProvider extends Component {
         },
         toggleOptionalParams: (e) => {
 
-            let optionalFields = this.state.optionalFields;
+            let optionalFields = {...this.state.optionalFields};
 
             delete optionalFields[e.target.name]
-
+         
             if(!e.target.checked) {
                 this.setState({
                     optionalFields: {
