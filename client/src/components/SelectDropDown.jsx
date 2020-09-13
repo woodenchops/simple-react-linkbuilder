@@ -20,7 +20,7 @@ import { MasterContext } from '../contexts/MasterContext';
     <fieldset>
         <label htmlFor={id}></label>
         <select onChange={(e) => generateUrl(e)} value={val} id={id} className="linkField">
-            <option disabled selected readOnly> {defaultOption} </option>
+            <option disabled defaultValue> {defaultOption} </option>
             {loopThroughJsonData(jsondata)}
         </select>
     </fieldset>

@@ -12,8 +12,8 @@ const OptionalFields = () => {
         <section className="params-container section-container">
 
             <div className="inner-param-container" id="paramContainer">
-                {(paramsJson && paramsJson.length > 0 && paramsJson.map(param => (
-                    <ParamInput paramName={param.paramName || 'No name given'} checked={param.checked || false} type={param.type || 'text'} /> 
+                {(paramsJson && paramsJson.length > 0 && paramsJson.map((param, idx) => (
+                    <ParamInput paramName={param.paramName || 'No name given'} checked={param.checked || false} type={param.type || 'text'} key={idx}/> 
                 )))}
             </div>
 
