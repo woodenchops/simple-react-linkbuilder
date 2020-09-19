@@ -1,20 +1,23 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { MasterContext } from '../contexts/MasterContext';
 
 const Result = () => {
 
-
     const {protocol, environment, locale, brand, book, queryString, clearUrl} = useContext(MasterContext);
 
+    const [url, setUrl] = useState('');
+
     useEffect(() => {
+
+        setUrl(`${protocol}${environment}${locale}${brand}${book}${queryString}`);
         
-    }, [environment, locale, brand, book ]);
+    }, [protocol, environment, locale, brand, book, queryString, clearUrl]);
 
     return ( 
         <section className="results-container section-container">
 
             <fieldset>
-                 <textarea id="result" placeholder={protocol} onChange={(e) => console.log(e)} value={`${protocol}${environment}${locale}${brand}${book}${queryString}`}></textarea>
+                 <textarea id="result" placeholder={protocol} onChange={(e) => setUrl(e.target.value)} value={url}></textarea>
             </fieldset>
 
             <section className="result-cta-section section-container">

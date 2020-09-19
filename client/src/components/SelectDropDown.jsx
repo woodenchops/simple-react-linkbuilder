@@ -5,7 +5,7 @@ import { MasterContext } from '../contexts/MasterContext';
  const SelectDropDown = ({jsondata, id, defaultOption, val} ) => {
 
 
-    const {generateUrl} = useContext(MasterContext);
+    const {buildRequiredFields} = useContext(MasterContext);
 
     const loopThroughJsonData = (data) => {
 
@@ -19,7 +19,7 @@ import { MasterContext } from '../contexts/MasterContext';
 
     <fieldset>
         <label htmlFor={id}></label>
-        <select onChange={(e) => generateUrl(e)} value={val} id={id} className="linkField">
+        <select onChange={(e) => buildRequiredFields(e)} value={val} id={id} className="linkField">
             <option disabled defaultValue> {defaultOption} </option>
             {loopThroughJsonData(jsondata)}
         </select>

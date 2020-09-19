@@ -1,10 +1,10 @@
   
 import React, { Component, createContext } from 'react';
 
-
 export const MasterContext = createContext();
 
 export class MasterProvider extends Component {
+
     state = {
         fetchData: async (url) => {
             let res = await fetch(url);
@@ -20,30 +20,37 @@ export class MasterProvider extends Component {
         optionalFields: {},
         standardDeeplink: false,
         OHWDeeplink: true,
-        generateUrl: (e) => {
+        finalResult: '',
+        buildRequiredFields: (e) => {
             this.setState({
                 [e.target.id]: e.target.value,
                 standardDeeplink: false,
                 OHWDeeplink: false
-            });
+            }, this.state.formatQueryString);
         },
         formatQueryString: () => {
 
-            let queryString = '';
+            const {protocol, environment, locale, brand, book, optionalFields} = this.state;
 
-            if(Object.entries(this.state.optionalFields).length > 0){
+            let buildQueryString = '';
+            
+            if(Object.entries(optionalFields).length > 0){
 
-                Object.entries(this.state.optionalFields).forEach((val,idx) => {
+                Object.entries(optionalFields).forEach((val,idx) => {
 
-                    queryString += (idx === 0)? '?' : '&'; // build the url by starting off by adding "?" at start then "&" inbetween params
-                    queryString += val[0] + '=' + val[1]; // params key/value pairs 
+                    buildQueryString += (idx === 0)? '?' : '&'; // build the url by starting off by adding "?" at start then "&" inbetween params
+                    buildQueryString += val[0] + '=' + val[1]; // params key/value pairs 
                     
                 });
             }
 
+            let buildFinalResult = protocol + environment + locale + brand + book;
+
             this.setState({
-                queryString
-            });
+                    queryString: buildQueryString,
+                    finalResult: buildFinalResult + buildQueryString
+                });
+
 
         },
         buildOptionalParamsObject: (e) => {
