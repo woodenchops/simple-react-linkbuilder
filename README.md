@@ -9,7 +9,7 @@ Step one:
 
 ##Notes:
 
-This app makes use of the ```Context API``` and ```Hooks``` over the use of ```Redux```. Why? Becuase I couldn't be jucked. Besides ```Context/Hooks``` is just simpler in my opinion. 
+This app makes use of the ```Context API``` and ```Hooks``` over the use of ```Redux```. Why? Because I couldn't be jucked. Besides ```Context/Hooks``` is just simpler in my opinion. 
 
 
 
