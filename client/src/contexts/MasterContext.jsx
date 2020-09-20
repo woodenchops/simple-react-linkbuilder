@@ -21,8 +21,14 @@ export class MasterProvider extends Component {
         standardDeeplink: false,
         OHWDeeplink: true,
         finalResult: '',
+        manuallyOverrideUrl: (e) => {
+            this.setState({
+                finalResult: e.target.value
+            })
+        },
         buildRequiredFields: (e) => {
             this.setState({
+                protocol: 'https://',
                 [e.target.id]: e.target.value,
                 standardDeeplink: false,
                 OHWDeeplink: false
@@ -93,6 +99,7 @@ export class MasterProvider extends Component {
         },
         createStandardDeeplink: () => {
             this.setState({
+                protocol: 'https://',
                 environment: 'www3.hilton.com/',
                 locale: 'en_US/',
                 brand: 'hi/',
@@ -103,6 +110,7 @@ export class MasterProvider extends Component {
         },
         createOHWDeeplink: () => {
             this.setState({
+                protocol: 'https://',
                 environment: 'www.hilton.com/',
                 locale: 'en_US/',
                 brand: '',
@@ -113,6 +121,7 @@ export class MasterProvider extends Component {
         },
         clearUrl: () => {
             this.setState({
+                protocol: '',
                 environment: '',
                 locale: '',
                 brand: '',

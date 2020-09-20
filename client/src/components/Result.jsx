@@ -1,28 +1,43 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState, useRef} from 'react';
 import { MasterContext } from '../contexts/MasterContext';
 
 const Result = () => {
 
-    const {protocol, environment, locale, brand, book, queryString, clearUrl} = useContext(MasterContext);
+    const {protocol, environment, locale, brand, book, queryString, clearUrl, manuallyOverrideUrl} = useContext(MasterContext);
 
     const [url, setUrl] = useState('');
+
+    const textArea = useRef(null);
+
+   const copyUrl = () => {
+       if(!url) {
+        alert('No link to test');
+       } else {
+        textArea.current.select();
+        document.execCommand("copy");
+       }
+    };
+
+    const testLink = () => {
+        !url ? alert('No link to test') : window.open(url);
+    };
 
     useEffect(() => {
 
         setUrl(`${protocol}${environment}${locale}${brand}${book}${queryString}`);
         
-    }, [protocol, environment, locale, brand, book, queryString, clearUrl]);
+    }, [protocol, environment, locale, brand, book, queryString, clearUrl, manuallyOverrideUrl]);
 
     return ( 
         <section className="results-container section-container">
 
             <fieldset>
-                 <textarea id="result" placeholder={protocol} onChange={(e) => setUrl(e.target.value)} value={url}></textarea>
+                 <textarea ref={textArea} id="result" placeholder={'https://'} onChange={(e) => {setUrl(e.target.value); manuallyOverrideUrl(e)}} value={url}></textarea>
             </fieldset>
 
             <section className="result-cta-section section-container">
-                    <button id="copyText" className="btn">Copy Link</button>
-                    <button id="testLink" className="btn">Test Link</button>
+                    <button id="copyText" className="btn" onClick={() => copyUrl()}>Copy Link</button>
+                    <button id="testLink" className="btn" onClick={() => testLink()}>Test Link</button>
                     <button id="clearInput" className="btn" onClick={() => clearUrl()}>Clear</button>
             </section>
          
