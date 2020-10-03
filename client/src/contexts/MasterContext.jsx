@@ -21,6 +21,7 @@ export class MasterProvider extends Component {
         standardDeeplink: false,
         OHWDeeplink: true,
         finalResult: '',
+        isCopied: false,
         manuallyOverrideUrl: (e) => {
             this.setState({
                 finalResult: e.target.value
@@ -126,8 +127,15 @@ export class MasterProvider extends Component {
                 locale: '',
                 brand: '',
                 book: '',
-                queryString: ''
+                queryString: '',
+                standardDeeplink: false,
+                OHWDeeplink: false
             }, this.state.formatQueryString)
+        },
+        setIsCopied: (val) => {
+            this.setState({
+                isCopied: val
+            })
         }
     }
 

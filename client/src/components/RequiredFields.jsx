@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useEffect} from 'react'
+import React, { Fragment, useContext, useCallback} from 'react'
 import EnvJSON from '../assets/data/env.json';
 import LocaleJSON from '../assets/data/locale.json';
 import BrandJSON from '../assets/data/brand.json';
@@ -9,10 +9,6 @@ import { MasterContext } from '../contexts/MasterContext';
 const RequiredFields = () => {
 
     const {createStandardDeeplink, createOHWDeeplink, environment, locale, brand, book, standardDeeplink, OHWDeeplink} = useContext(MasterContext);
-
-    useEffect(() => {
-
-    }, [createStandardDeeplink, createOHWDeeplink])
     
     return ( 
         <Fragment>
@@ -20,10 +16,9 @@ const RequiredFields = () => {
 
             <section className="button-container section-container">
 
+                <button onClick={useCallback(() => createOHWDeeplink(), [createOHWDeeplink])} id="ohw-generator" className={`btn ${(OHWDeeplink ? 'active' : '')} link-generator btn--first`}>Create OHW Link</button>
 
-                <button onClick={createOHWDeeplink} id="ohw-generator" className={`btn ${(OHWDeeplink ? 'active' : '')} link-generator btn--first`}>Create OHW Link</button>
-
-                <button onClick={createStandardDeeplink} id="standard-generator" className={`btn ${(standardDeeplink ? 'active' : '')}  link-generator`}>Create Standard Deep Link</button>
+                <button onClick={useCallback(() => createStandardDeeplink(), [createStandardDeeplink])} id="standard-generator" className={`btn ${(standardDeeplink ? 'active' : '')}  link-generator`}>Create Standard Deep Link</button>
 
             </section>
 

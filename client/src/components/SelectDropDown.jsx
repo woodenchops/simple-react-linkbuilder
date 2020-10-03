@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useCallback} from 'react';
 import { MasterContext } from '../contexts/MasterContext';
 
 
@@ -15,11 +15,13 @@ import { MasterContext } from '../contexts/MasterContext';
      
      };
 
+     const handleSelect = useCallback( (e) => buildRequiredFields(e), [buildRequiredFields] )
+
     return ( 
 
     <fieldset>
         <label htmlFor={id}></label>
-        <select onChange={(e) => buildRequiredFields(e)} value={val} id={id} className="linkField">
+        <select onChange={(e) => handleSelect(e)} value={val} id={id} className="linkField">
             <option disabled defaultValue> {defaultOption} </option>
             {loopThroughJsonData(jsondata)}
         </select>

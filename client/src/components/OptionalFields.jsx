@@ -13,7 +13,7 @@ const OptionalFields = () => {
 
             <div className="inner-param-container" id="paramContainer">
                 {(paramsJson && paramsJson.length > 0 && paramsJson.map((param, idx) => (
-                    <ParamInput paramName={param.paramName || 'No name given'} checked={param.checked || false} type={param.type || 'text'} key={idx}/> 
+                    <ParamInput paramName={param.paramName || 'No name given'} checked={param.checked || false} type={param.type || 'text'} description={param.description} key={idx}/> 
                 )))}
             </div>
 

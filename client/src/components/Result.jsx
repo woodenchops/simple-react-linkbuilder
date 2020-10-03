@@ -3,7 +3,7 @@ import { MasterContext } from '../contexts/MasterContext';
 
 const Result = () => {
 
-    const {protocol, environment, locale, brand, book, queryString, clearUrl, manuallyOverrideUrl} = useContext(MasterContext);
+    const {protocol, environment, locale, brand, book, queryString, clearUrl, manuallyOverrideUrl, setIsCopied} = useContext(MasterContext);
 
     const [url, setUrl] = useState('');
 
@@ -12,9 +12,11 @@ const Result = () => {
    const copyUrl = () => {
        if(!url) {
         alert('No link to test');
+        setIsCopied(false);
        } else {
         textArea.current.select();
         document.execCommand("copy");
+        setIsCopied(true);
        }
     };
 
@@ -38,7 +40,7 @@ const Result = () => {
             <section className="result-cta-section section-container">
                     <button id="copyText" className="btn" onClick={() => copyUrl()}>Copy Link</button>
                     <button id="testLink" className="btn" onClick={() => testLink()}>Test Link</button>
-                    <button id="clearInput" className="btn" onClick={() => clearUrl()}>Clear</button>
+                    <button id="clearInput" className="btn" onClick={() => {clearUrl(); setUrl('');}}>Clear</button>
             </section>
          
         </section>
