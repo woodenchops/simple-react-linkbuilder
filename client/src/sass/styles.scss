@@ -76,23 +76,23 @@ body * {
 *********************************/
 
 #copy-notification {
-    background-color: #5cd882;
+    // background-color: #5cd882;
     color: #fff;
-    padding: 0;
     text-align: center;
-    max-height: 0;
     position: fixed;
     z-index: 1;
-    top: 0;
-    left: 0;
-    width: 100%;
-    transition: 1s ease;
+    bottom: 4rem;
+    right: 4rem;
+    transition: .4s ease;
+    overflow: hidden;
+    border-radius: 4px;
+    max-height: 0;
     overflow: hidden;
 }
 
 #copy-notification.show {
-    padding: 10px 0px;
-    max-height: 100px;
+    padding: 20px 15px;
+    max-height: 130px;
 }
 
 #copy-notification p {

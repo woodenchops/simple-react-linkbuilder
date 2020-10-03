@@ -22,9 +22,16 @@ export class MasterProvider extends Component {
         OHWDeeplink: true,
         finalResult: '',
         isCopied: false,
+        warnings: {},
+        updateWarings: (warning) => {
+            this.setState({
+                warnings: warning
+            });
+        },
         manuallyOverrideUrl: (e) => {
             this.setState({
-                finalResult: e.target.value
+                finalResult: e.target.value,
+                warnings: {}
             })
         },
         buildRequiredFields: (e) => {
@@ -32,7 +39,8 @@ export class MasterProvider extends Component {
                 protocol: 'https://',
                 [e.target.id]: e.target.value,
                 standardDeeplink: false,
-                OHWDeeplink: false
+                OHWDeeplink: false,
+                warnings: {}
             }, this.state.formatQueryString);
         },
         formatQueryString: () => {
@@ -71,7 +79,8 @@ export class MasterProvider extends Component {
                 this.setState({
                     optionalFields: {
                         ...optionalFields
-                    }
+                    },
+                    warnings: {}
                 }, this.state.formatQueryString)
 
             } else {
@@ -79,7 +88,8 @@ export class MasterProvider extends Component {
                 optionalFields: {
                     ...this.state.optionalFields,
                     [e.target.name]: e.target.value
-                }
+                },
+                warnings: {}
             }, this.state.formatQueryString); 
 
             }           
@@ -94,7 +104,8 @@ export class MasterProvider extends Component {
                 this.setState({
                     optionalFields: {
                         ...optionalFields
-                    }
+                    },
+                    warnings: {}
                 }, this.state.formatQueryString)
             }
         },
@@ -106,7 +117,8 @@ export class MasterProvider extends Component {
                 brand: 'hi/',
                 book: 'reservation/book.htm',
                 standardDeeplink: true,
-                OHWDeeplink: false
+                OHWDeeplink: false,
+                warnings: {}
             }, this.state.formatQueryString)
         },
         createOHWDeeplink: () => {
@@ -117,7 +129,8 @@ export class MasterProvider extends Component {
                 brand: '',
                 book: 'book/reservation/deeplink',
                 standardDeeplink: false,
-                OHWDeeplink: true
+                OHWDeeplink: true,
+                warnings: {}
             }, this.state.formatQueryString)
         },
         clearUrl: () => {
