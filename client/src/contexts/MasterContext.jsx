@@ -129,7 +129,8 @@ export class MasterProvider extends Component {
                 book: '',
                 queryString: '',
                 standardDeeplink: false,
-                OHWDeeplink: false
+                OHWDeeplink: false,
+                optionalFields: {}
             }, this.state.formatQueryString)
         },
         setIsCopied: (val) => {
