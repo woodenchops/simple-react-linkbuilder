@@ -3,7 +3,7 @@ import { MasterContext } from '../contexts/MasterContext';
 
 const Result = () => {
 
-    const {protocol, environment, locale, brand, book, queryString, clearUrl, manuallyOverrideUrl, setIsCopied, updateWarings} = useContext(MasterContext);
+    const {protocol, environment, locale, brand, book, queryString, clearUrl, manuallyOverrideUrl, setNotification, updateWarings} = useContext(MasterContext);
 
     const [url, setUrl] = useState('');
 
@@ -12,16 +12,21 @@ const Result = () => {
    const copyUrl = () => {
        if(!url) {
         updateWarings({error: 'No link to copy!'});
-        setIsCopied(false);
+        setNotification(true);
        } else {
         textArea.current.select();
         document.execCommand("copy");
-        setIsCopied(true);
+        setNotification(true);
        }
     };
 
     const testLink = () => {
-        !url ? updateWarings({error: 'No link to test!'}) : window.open(url);
+        if(!url){
+            updateWarings({error: 'No link to test!'});
+            setNotification(true);
+        } else {
+            window.open(url);
+        }
     };
 
     useEffect(() => {

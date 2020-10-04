@@ -76,7 +76,6 @@ body * {
 *********************************/
 
 #copy-notification {
-    // background-color: #5cd882;
     color: #fff;
     text-align: center;
     position: fixed;
@@ -86,13 +85,13 @@ body * {
     transition: .4s ease;
     overflow: hidden;
     border-radius: 4px;
-    max-height: 0;
+    opacity: 0;
+    padding: 20px 15px;
     overflow: hidden;
 }
 
 #copy-notification.show {
-    padding: 20px 15px;
-    max-height: 130px;
+  opacity: 1;
 }
 
 #copy-notification p {

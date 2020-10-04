@@ -3,15 +3,15 @@ import { MasterContext } from '../contexts/MasterContext';
 
 const NotificationBar = () => {
 
-    const {isCopied, setIsCopied, warnings} = useContext(MasterContext);
+    const {showNotification, setNotification, warnings} = useContext(MasterContext);
 
     const handleNotification = useCallback(() => {
-        if(isCopied || warnings.error){
+        if(showNotification){
             setTimeout(() => {
-                setIsCopied(false);
+                setNotification(false);
             }, 2000);
-        }
-    }, [isCopied, setIsCopied, warnings.error]);
+        } 
+    }, [setNotification, showNotification]);
 
     useEffect(() => {
         handleNotification();
@@ -25,9 +25,11 @@ const NotificationBar = () => {
         backgroundColor: 'red'
     };
 
+    const message =  warnings && warnings.error ? warnings.error : 'link copied';
+
     return ( 
-        <div id="copy-notification" className={(isCopied || warnings.error) ? 'show' : ''} style={warnings.error ? error : success} aria-label="link has been copied" aria-live="assertive">
-            <p>{warnings.error ? warnings.error : 'link has been copied!'}</p>
+        <div id="copy-notification" className={(showNotification) ? 'show' : ''} style={warnings.error ? error : success} aria-label={message} aria-live="assertive">
+            <p>{message}</p>
         </div>
      );
 }

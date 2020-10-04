@@ -23,6 +23,12 @@ export class MasterProvider extends Component {
         finalResult: '',
         isCopied: false,
         warnings: {},
+        showNotification: false,
+        setNotification: (val) => {
+            this.setState({
+                showNotification: val
+            })
+        },
         updateWarings: (warning) => {
             this.setState({
                 warnings: warning
@@ -32,7 +38,7 @@ export class MasterProvider extends Component {
             this.setState({
                 finalResult: e.target.value,
                 warnings: {}
-            })
+            });
         },
         buildRequiredFields: (e) => {
             this.setState({
